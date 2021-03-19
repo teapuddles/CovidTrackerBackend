@@ -68,7 +68,7 @@ class UsersController < ApplicationController
         render json: { user: UserSerializer.new(@user), token: wristband }
     end 
 
-          # token decoding and AUTH methods
+     # token decoding and AUTH methods
     def encode_token(payload)
      # save string as env variable later super important
     JWT.encode(payload, 'THISISOURMOTHERFUCKINGWRISTBAND')
