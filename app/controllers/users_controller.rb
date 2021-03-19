@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
     def login 
         @user = User.find_by(username: params[:username])
-        
+
         if @user && @user.authenticate(params[:password])
             # has_secure_password contains authenticate method
             wristband = encode_token({user_id: @user.id})
@@ -29,9 +29,10 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
+        
         if @user.valid?
             wristband = encode_token({user_id: @user.id})
-            render json:  { user: UserSerializer.new(@user), token: wristband }
+            render json: @user, token: wristband 
         else
             render json: {message: 'Username already taken', status: 500}
         end
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
 
     def update_location
         @user = User.find(params[:id])
+
         @location = Location.find_by(country: params[:country])
 
         if @user.valid? && @location 
@@ -107,7 +109,7 @@ class UsersController < ApplicationController
     private 
 
     def user_params 
-        params.permit(:username, :password, :id, locations_attributes: [:country, :flag, :ISO, :confirmed, :deaths, :active, :recovered, :lat, :lon, :date])
+        params.permit(:username, :password, :id, locations_attributes: [:country, :flag, :ISO, :confirmed, :deaths, :active, :recovered, :lat, :lon, :date], user: [:username])
     end
 
 end
