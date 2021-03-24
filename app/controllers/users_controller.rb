@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        
+     
         if @user.valid?
             wristband = encode_token({user_id: @user.id})
             render json: @user, token: wristband 
@@ -109,7 +109,8 @@ class UsersController < ApplicationController
     private 
 
     def user_params 
-        params.permit(:username, :password, :id, locations_attributes: [:country, :flag, :ISO, :confirmed, :deaths, :active, :recovered, :lat, :lon, :date], user: [:username])
+        params.permit(:username, :password, :id, locations_attributes: [:country, :flag, :ISO, :confirmed, :deaths, :active, :recovered, :lat, :lon, :date])
     end
+
 
 end
