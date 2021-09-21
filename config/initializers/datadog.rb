@@ -1,4 +1,5 @@
 require 'datadog/statsd'
+require 'ddtrace'
 
 statsd = Datadog::Statsd.new('localhost', 8125)
 
