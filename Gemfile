@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Datadog gems
 gem 'dogstatsd-ruby'
 gem 'lograge'
+gem 'ddtrace'
