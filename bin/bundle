@@ -9,6 +9,8 @@
 #
 
 require "rubygems"
+require 'datadog/statsd'
+
 
 m = Module.new do
   module_function
